@@ -12,12 +12,12 @@ class  Owner extends Component{
             {
                 type:"email",
                 value:'',
-                label: 'email' 
+                label: 'Email' 
             },
             {
                 type:"password",
                 value: '',
-                label: 'password'                
+                label: 'Password'                
             },
             {
                 type:"text",
@@ -48,22 +48,34 @@ class  Owner extends Component{
         return(
             <div>
                  <Navbar/>
-                <form className="col-sm-5" action="">
-                    {
-                        this.state.controls.map((control, index)=>(                            
-                            <Input 
-                                key={index}
-                                label={control.label} 
-                                value={control.value} 
-                                type={control.type}
-                                changed={(event) => this.inputHandler(event,index) }
-                            />
-                        ))
-                    }
-                    <button type="submit" className="btn btn-primary">
-                        submit
-                    </button>
-                </form>                            
+                 <div className="container">
+                    <div className="row justify-content-center align-items-center">
+                        <div className="col-sm-6">
+                            <div className="card mt-15">
+                                <div className="card-header text-center">
+                                    Registrar Nuevo Usuario
+                                </div>
+                 
+                                <form className="form-group card-body" action="">
+                                    {
+                                        this.state.controls.map((control, index)=>(                            
+                                            <Input 
+                                                key={index}
+                                                label={control.label} 
+                                                value={control.value} 
+                                                type={control.type}
+                                                changed={(event) => this.inputHandler(event,index) }
+                                            />
+                                        ))
+                                    }
+                                    <button type="submit" className="btn btn-primary btn-md">
+                                        Crear usuario
+                                    </button>
+                                </form>                            
+                            </div>                
+                        </div>
+                    </div>                        
+                 </div>     
             </div>
         )
     }

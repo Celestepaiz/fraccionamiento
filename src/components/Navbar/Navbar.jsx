@@ -1,31 +1,20 @@
-import React, {Component} from 'react'
+import React from 'react'
 
 const Navbar = (props) => (
-    <div>
-         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-
-         <a class="navbar-brand" href="#">Home</a>
-         <ul class="navbar-nav">
-         <li class="nav-item">
-             <a class="nav-link" href="#">Link 1</a>
-         </li>
-         <li class="nav-item">
-             <a class="nav-link" href="#">Link 2</a>
-         </li>
-         <li class="nav-item dropdown">
-             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-        Dropdown link
-      </a>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Holi 1</a>
-        <a class="dropdown-item" href="#">Holi 2</a>
-        <a class="dropdown-item" href="#">Holi 3</a>
-      </div>
-    </li>
-  </ul>
-</nav> 
-
-    </div>
+    <ul className="nav navbar-light bg-light justify-content-end">
+        <li className="nav-item">
+        <a className="nav-link active" href="#">Active</a>
+        </li>
+        <li className="nav-item">
+        <a className="nav-link" href="#">Link</a>
+        </li>
+        <li className="nav-item">
+        <a className="nav-link" href="#">Link</a>
+        </li>
+        <li className="nav-item">
+        <a className="nav-link disabled" href="#">Disabled</a>
+        </li>
+    </ul>
 )
 
 export default Navbar

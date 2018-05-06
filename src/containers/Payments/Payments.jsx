@@ -17,12 +17,12 @@ class  Payments extends Component{
             {
                 type:"text",
                 value: '',
-                label:"calle"
+                label:"Calle"
             },
             {
                 type:"text",
                 value: '',
-                label:"numero"
+                label:"Cumero"
             },
             {
                 type:"text",
@@ -46,27 +46,37 @@ class  Payments extends Component{
     render(){
         return(
             <div>
-                 <Navbar/>
-               
-                <form className="col-sm-5" action="">
-             
-                    {
-                        this.state.controls.map((control, index)=>(                            
-                            <Input 
-                                key={index}
-                                label={control.label} 
-                                value={control.value} 
-                                type={control.type}
-                                changed={(event) => this.inputHandler(event,index) }
-                            />
-                        ))
-                    }
-                    <button type="submit" className="btn btn-primary">
-                        submit
-                    </button>
-                    
-                </form>  
-                                         
+                <Navbar/>
+                <div className="container">
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-sm-6">
+                            <div className="card mt-15">
+                                <div className="card-header text-center">
+                                    Pagos
+                                </div>
+                 
+                                <form className="card-body" action="">
+                            
+                                    {
+                                        this.state.controls.map((control, index)=>(                            
+                                            <Input 
+                                                key={index}
+                                                label={control.label} 
+                                                value={control.value} 
+                                                type={control.type}
+                                                changed={(event) => this.inputHandler(event,index) }
+                                            />
+                                        ))
+                                    }
+                                    <button type="submit" className="btn btn-primary">
+                                        Crear Pago
+                                    </button>
+                                    
+                                </form>  
+                                </div>                
+                        </div>
+                    </div>                        
+                 </div>             
             </div>
         )
     }
