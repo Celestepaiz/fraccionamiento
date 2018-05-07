@@ -23,19 +23,20 @@ class  Maintenance extends Component{
             }
         ],
         error: null,
-        usersData: null,
+        usersData: [],
         userId: null,
         
     }
 
     componentDidMount(){
+        console.log("hola")
         axios.get('http://localhost:3000/api/users')
              .then((response) => {
                  this.setState({
                      usersData: response.data.users
                  })
              }).catch((error) => {
-                console.log(error)
+                console.log("error" + error)
              })
     }
 
@@ -46,6 +47,7 @@ class  Maintenance extends Component{
             concepto: this.state.controls[0].value,
             monto: this.state.controls[1].value,
             fecha_limite: this.state.controls[2].value,
+            id_user: this.state.userId
         }
 
         axios.post('http://localhost:3000/api/maintenance',data)
@@ -68,6 +70,13 @@ class  Maintenance extends Component{
         stateCopy[index].value = event.target.value
         this.setState({
             controls: stateCopy
+        })
+    }
+
+    changeHandler = (event) => {
+        console.log(event.target.value)
+        this.setState({
+            userId: event.target.value
         })
     }
 
@@ -103,12 +112,12 @@ class  Maintenance extends Component{
                                             />
                                         ))
                                     }
-                                    <div class="form-group">
-                                        <label for="exampleFormControlSelect1">Nombre Usuario</label>
-                                        <select class="form-control" id="exampleFormControlSelect1">
+                                    <div className="form-group">
+                                        <label >Nombre Usuario</label>
+                                        <select className="form-control" onChange={(event) => this.changeHandler(event)}>
                                             {
                                                 this.state.usersData.map((user,index) => (
-                                                    <option key={index} _id={user._id} >{user.name}</option>
+                                                    <option key={index} value={user._id}>{user.nombre}</option>
                                                 ))
                                             }
                                             
