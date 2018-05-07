@@ -40,7 +40,7 @@ class  Reservation extends Component{
         ],
         error: null ,
         usersData: [],
-        userId: this.state.usersData[0]._id
+        userId: null
                       
     }
 
@@ -48,7 +48,9 @@ class  Reservation extends Component{
         axios.get('http://localhost:3000/api/users')
              .then((response) => {
                  this.setState({
-                     usersData: response.data.users
+                     usersData: response.data.users,
+                     userId: response.data.users[0]._id
+                     
                  })
              }).catch((error) => {
                 console.log("error" + error)
