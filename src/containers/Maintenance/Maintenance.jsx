@@ -22,8 +22,23 @@ class  Maintenance extends Component{
                 label: 'Fecha limite'                
             }
         ],
-        error: null
+        error: null,
+        usersData: null,
+        userId: null,
+        
     }
+
+    componentDidMount(){
+        axios.get('http://localhost:3000/api/users')
+             .then((response) => {
+                 this.setState({
+                     usersData: response.data.users
+                 })
+             }).catch((error) => {
+                console.log(error)
+             })
+    }
+
 
     submitHandler = (event) => {
         event.preventDefault()
@@ -88,6 +103,18 @@ class  Maintenance extends Component{
                                             />
                                         ))
                                     }
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1">Nombre Usuario</label>
+                                        <select class="form-control" id="exampleFormControlSelect1">
+                                            {
+                                                this.state.usersData.map((user,index) => (
+                                                    <option key={index} _id={user._id} >{user.name}</option>
+                                                ))
+                                            }
+                                            
+                                        </select>
+                                    </div>
+                                    
                                     <button type="submit" className="btn btn-primary">
                                         Crear Pago
                                     </button>
