@@ -27,9 +27,7 @@ const Navbar = (props) => {
     return (
         <nav >
             {
-                props.auth
-                ? {links}
-                : null
+                props.auth ? links: null
             }
         
         </nav>
