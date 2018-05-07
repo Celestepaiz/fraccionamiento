@@ -125,7 +125,7 @@ class  Access extends Component{
                                         </select>
                                     </div>                                    
                                     <button type="submit" className="btn btn-primary">
-                                        Crear Control de Acceso
+                                        Guardar
                                     </button>
                                 </form>    
                                 </div>                

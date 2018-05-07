@@ -8,6 +8,7 @@ import Maintenance from './containers/Maintenance/Maintenance'
 import OwnerList from './containers/Owner/OwnerList'
 import MaintenanceList from './containers/Maintenance/MaintenanceList'
 import PaymentsList from './containers/Payments/PaymentsList'
+import AccessList from './containers/Access/AccessList'
 import { Switch, Route, Redirect , withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import './App.css';
@@ -31,6 +32,7 @@ class App extends Component {
     if(this.props.isAuth){
       routes = (
         <Switch>
+          
           <Route path="/reservation" component={Reservation}/>
           <Route path="/access" component={Access}/>
           <Route path="/maintenance" component={Maintenance}/>
@@ -40,6 +42,7 @@ class App extends Component {
           <Route path="/all-maintenance" component={MaintenanceList}/>
           <Route path="/all-reservations"component={ReservationList}/>
           <Route path="/all-users" component={OwnerList}/>
+          <Route path="/all-access" component={AccessList}/>
           <Redirect to="/all-payments"/>
         </Switch>                
       )

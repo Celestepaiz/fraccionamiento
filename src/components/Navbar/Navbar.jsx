@@ -4,6 +4,9 @@ const Navbar = (props) => {
     let links = [
         <ul className="nav navbar-light bg-light justify-content-end">
             <li className="nav-item">
+                <NavLink to="/all-access" className="nav-link"> Acceso de autos </NavLink>
+            </li>
+            <li className="nav-item">
                 <NavLink to="/all-users" className="nav-link"> Usuarios </NavLink>
             </li>
             <li className="nav-item">
