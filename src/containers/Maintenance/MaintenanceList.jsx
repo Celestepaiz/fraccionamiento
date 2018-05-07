@@ -8,7 +8,7 @@ import axios from 'axios'
 export default class MaintenanceList extends Component {
 
     state = {
-        headers: ["Id", "Concepto", "Monto", "Fecha limite", "Acciones"],
+        headers: ["Id", "Concepto", "Monto", "Fecha limite", "Id", "Acciones"],
         data: []
     }
 
