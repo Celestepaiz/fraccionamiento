@@ -44,7 +44,7 @@ export const auth = (email, password, isSignedUp) => {
             email: email,
             password: password
         }
-        let url = 'http://localhost:3000/login'
+        let url = 'http://localhost:3000/api/login'
         if (!isSignedUp) {
             url = 'http://localhost:3000/register'
         }

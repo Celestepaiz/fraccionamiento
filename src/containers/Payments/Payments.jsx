@@ -30,7 +30,18 @@ class  Payments extends Component{
                 type:"text",
                 value:'',
                 label:"Nombre de quien pago"
+            },
+            {
+                type: "text",
+                value: '',
+                label: "Concepto"
+            },
+            {
+                type: "text",
+                value: '',
+                label: "Monto"
             }
+
         ],
         error: null
     }
@@ -39,12 +50,13 @@ class  Payments extends Component{
         event.preventDefault()
         const data = {
             folio: this.state.controls[0].value,
-            fecha_mantenimiento: this.state.controls[1].value,
+            fecha_mant: this.state.controls[1].value,
             calle: this.state.controls[2].value,
             numero: this.state.controls[3].value,
-            nombre: this.state.controls[4].value
+            nombre: this.state.controls[4].value,
+            concepto: this.state.controls[5].value,
+            monto: parseFloat(this.state.controls[6].value)        
         }
-
         axios.post('http://localhost:3000/api/payments',data)
             .then((response) => {
                 this.props.history.replace('/all-payments')

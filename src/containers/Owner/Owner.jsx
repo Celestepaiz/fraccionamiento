@@ -42,7 +42,8 @@ class  Owner extends Component{
             email: this.state.controls[1].value,
             password: this.state.controls[2].value,
             calle: this.state.controls[3].value,
-            numero: this.state.controls[4].value
+            numero: this.state.controls[4].value,
+            rol: "propietario"
         }
 
         axios.post('http://localhost:3000/api/register',data)
