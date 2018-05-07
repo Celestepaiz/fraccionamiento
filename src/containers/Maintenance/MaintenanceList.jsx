@@ -34,7 +34,20 @@ export default class MaintenanceList extends Component {
 
     //id
     deleteHandler = (index) => {
-        console.log(this.state.data[index][0])
+        // console.log(this.state.data[index][0])
+        axios.delete(`http://localhost:3000/api/maintenance/${this.state.data[index][0]}`)
+        .then(() => {
+           const dataCopy = [
+               ...this.state.data
+           ]                 
+           dataCopy.splice(index, 1)
+           this.setState({
+               data: dataCopy
+           })
+       })
+        .catch(() => {
+            console.log("error")
+        })
     }
 
     //id

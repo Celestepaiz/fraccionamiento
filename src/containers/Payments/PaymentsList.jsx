@@ -34,7 +34,20 @@ export default class PaymentsList extends Component {
 
     //folio
     deleteHandler = (index) => {
-        console.log(this.state.data[index][1])
+        // console.log(this.state.data[index][1])
+        axios.delete(`http://localhost:3000/api/access/${this.state.data[index][1]}`)
+        .then(() => {
+           const dataCopy = [
+               ...this.state.data
+           ]                 
+           dataCopy.splice(index, 1)
+           this.setState({
+               data: dataCopy
+           })
+       })
+        .catch(() => {
+            console.log("error")
+        })
     }
 
     //folio
