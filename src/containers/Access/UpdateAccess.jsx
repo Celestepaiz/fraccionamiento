@@ -36,9 +36,9 @@ class  UpdateAccess extends Component{
         axios.get(`http://localhost:3000/api/access/${this.props.location.state.codigo}`)
              .then((response) => {
                 const data = response.data.registro[0]
-                const updatedControls = {
-                    ...this.state.controls,                    
-                }
+                const updatedControls = [
+                    ...this.state.controls,                                    
+                ]            
                 updatedControls[0].value = data.modelo
                 updatedControls[1].value = data.marca
                 updatedControls[2].value = data.placas
@@ -129,19 +129,7 @@ class  UpdateAccess extends Component{
                                                 changed={(event) => this.inputHandler(event,index) }
                                             />
                                         ))
-                                    }
-                                    <div className="form-group">
-                                        <label >Nombre Usuario</label>
-                                        <select className="form-control" onChange={(event) => this.changeHandler(event)}>
-                                            {
-                                                this.state.usersData.map((user,index) => (
-                                                    <option key={index} value={user._id}>{user.nombre}</option>
-                                                ))
-                                            }
-                                            
-                                        </select>
-                                    </div>
-                                                                 
+                                    }                                                                 
                                     <button type="submit" className="btn btn-primary">
                                         Guardar
                                     </button>
