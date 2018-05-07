@@ -55,7 +55,7 @@ class  Access extends Component{
 
         axios.post('http://localhost:3000/api/access',data)
             .then((response) => {
-                this.props.history.replace('/access')
+                this.props.history.replace('/all-access')
             })
             .catch((error) => {
                 this.setState({
