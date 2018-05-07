@@ -35,7 +35,19 @@ class  UpdateAccess extends Component{
     componentDidMount(){
         axios.get(`http://localhost:3000/api/access/${this.props.location.state.codigo}`)
              .then((response) => {
-                console.log(response.data.registro[0])
+                const data = response.data.registro[0]
+                const updatedControls = {
+                    ...this.state.controls,                    
+                }
+                updatedControls[0].value = data.modelo
+                updatedControls[1].value = data.marca
+                updatedControls[2].value = data.placas
+                updatedControls[3].value = data.codigo
+                this.setState({
+                    controls: updatedControls,
+                    userId: data.id_user
+                })
+                
              })
         axios.get('http://localhost:3000/api/users')
              .then((response) => {
@@ -96,7 +108,7 @@ class  UpdateAccess extends Component{
                         <div class="col-sm-6">
                             <div className="card mt-15">
                                 <div className="card-header text-center">
-                                    Chips control de acceso
+                                    Actualizar Chip Control de Acceso
                                 </div>
                                 {   
                                     this.state.error
