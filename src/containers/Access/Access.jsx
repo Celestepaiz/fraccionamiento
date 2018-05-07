@@ -24,10 +24,22 @@ class  Access extends Component{
                 type:"text",
                 value:'',
                 label:'Codigo'
-            }
-        
+            }        
         ],
+        usersData: null,
+        userId: null,
         error: null
+    }
+
+    componentDidMount(){
+        axios.get('http://localhost:3000/api/users')
+             .then((response) => {
+                 this.setState({
+                     usersData: response.data.users
+                 })
+             }).catch((error) => {
+                console.log(error)
+             })
     }
 
     submitHandler = (event) => {
@@ -36,7 +48,8 @@ class  Access extends Component{
             modelo: this.state.controls[0].value,
             marca: this.state.controls[1].value,
             placas: this.state.controls[2].value,
-            codigo: this.state.controls[3].value
+            codigo: this.state.controls[3].value,
+            id_user: this.state.userId
         }
 
         axios.post('http://localhost:3000/api/access',data)
@@ -93,6 +106,17 @@ class  Access extends Component{
                                             />
                                         ))
                                     }
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1">Nombre Usuario</label>
+                                        <select class="form-control" id="exampleFormControlSelect1">
+                                            {
+                                                this.state.usersData.map((user,index) => (
+                                                    <option key={index} _id={user._id} >{user.name}</option>
+                                                ))
+                                            }
+                                            
+                                        </select>
+                                    </div>
                                     <button type="submit" className="btn btn-primary">
                                         Crear Control de Acceso
                                     </button>
