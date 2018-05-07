@@ -2,23 +2,21 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 const Navbar = (props) => (
     <ul className="nav navbar-light bg-light justify-content-end">
+        
         <li className="nav-item">
-            <NavLink to="/owner" className="nav-link"> Crear usuario </NavLink>
+            <NavLink to="/all-users" className="nav-link"> Usuarios </NavLink>
         </li>
         <li className="nav-item">
-            <NavLink to="/reservation" className="nav-link"> Reservaciones</NavLink>
+            <NavLink to="/all-payments" className="nav-link"> Pagos</NavLink>
         </li>
         <li className="nav-item">
-            <NavLink to="/access" className="nav-link"> Autos</NavLink>
+            <NavLink to="/all-reservations" className="nav-link"> Reservaciones </NavLink>
         </li>
         <li className="nav-item">
-            <NavLink to="/payments" className="nav-link"> Registro de pagos</NavLink>
+            <NavLink to="/all-maintenance" className="nav-link"> Mantenimiento </NavLink>
         </li>
         <li className="nav-item">
-            <NavLink to="/maintenance" className="nav-link"> Alta conceptos de pago </NavLink>
-        </li>
-        <li className="nav-item">
-            <NavLink to="/all-users" className="nav-link"> Lista Usuarios </NavLink>
+            <NavLink to="/reports" className="nav-link"> Reportes </NavLink>
         </li>
     </ul>
 )

@@ -22,7 +22,7 @@ class  Payments extends Component{
             {
                 type:"text",
                 value: '',
-                label:"Cumero"
+                label:"Numero"
             },
             {
                 type:"text",

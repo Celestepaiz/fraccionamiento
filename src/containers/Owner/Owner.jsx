@@ -29,6 +29,7 @@ class  Owner extends Component{
                 value:'',
                 label:'Numero'
             }
+            
         
         ]                
     }
