@@ -2,77 +2,91 @@ import React, {Component} from 'react'
 import Input from '../../components/UI/Input'
 import Navbar from '../../components/Navbar/Navbar'
 import axios from 'axios'
-class  UpdateAccess extends Component{
+
+class  Payments extends Component{
     state = {
         controls: [
             {                
                 type:"text",
                 value: '',
-                label: 'Modelo'                
+                label: 'Folio'               
+            },
+            {
+                type:"date",
+                value:'',
+                label: 'Fecha de mantenimiento' 
+            },
+            {
+                type:"text",
+                value: '',
+                label:"Calle"
+            },
+            {
+                type:"text",
+                value: '',
+                label:"Numero"
             },
             {
                 type:"text",
                 value:'',
-                label: 'Marca' 
+                label:"Nombre de quien pago"
             },
             {
-                type:"text",
-                value:'',
-                label:'Placas'
+                type: "text",
+                value: '',
+                label: "Concepto"
             },
             {
-                type:"text",
-                value:'',
-                label:'Codigo'
-            }        
+                type: "text",
+                value: '',
+                label: "Monto"
+            }
+
         ],
         error: null,
-        usersData: [],
         userId: null
         
     }
 
     componentDidMount(){
-        axios.get(`http://localhost:3000/api/access/${this.props.location.state.codigo}`)
-             .then((response) => {
-                const data = response.data.registro[0]
-                const updatedControls = [
-                    ...this.state.controls,                                    
-                ]            
-                updatedControls[0].value = data.modelo
-                updatedControls[1].value = data.marca
-                updatedControls[2].value = data.placas
-                updatedControls[3].value = data.codigo
-                this.setState({
-                    controls: updatedControls,
-                    
-                })
-                
-             })
-        axios.get('http://localhost:3000/api/users')
-             .then((response) => {
-                 this.setState({
-                     usersData: response.data.users,
-                     userId: response.data.users[0]._id
-                 })
-             }).catch((error) => {
-                console.log("error" + error)
-             })
+        axios.get(`http://localhost:3000/api/maintenance/${this.props.location.state.folio}`)
+        .then((response) => {
+           const data = response.data.registro[0]
+           const updatedControls = [
+               ...this.state.controls,                                    
+           ]            
+           updatedControls[0].value = data.folio
+           updatedControls[1].value = data.fecha_mant
+           updatedControls[2].value = data.calle
+           updatedControls[3].value = data.numero
+           updatedControls[4].value = data.nombre
+           updatedControls[5].value = data.concepto
+           updatedControls[6].value = data.monto
+           
+           this.setState({
+               controls: updatedControls,
+               userId: data.id_user
+           })
+           
+        })
+           
     }
 
     submitHandler = (event) => {
         event.preventDefault()
         const data = {
-            modelo: this.state.controls[0].value,
-            marca: this.state.controls[1].value,
-            placas: this.state.controls[2].value,
-            codigo: this.state.controls[3].value,
-            id_user: this.state.userId
+            folio: this.state.controls[0].value,
+            fecha_mant: this.state.controls[1].value,
+            calle: this.state.controls[2].value,
+            numero: this.state.controls[3].value,
+            nombre: this.state.controls[4].value,
+            concepto: this.state.controls[5].value,
+            monto: parseFloat(this.state.controls[6].value),
+            id_user: this.state.userId      
         }
-
-        axios.post('http://localhost:3000/api/access',data)
+        axios.post('http://localhost:3000/api/payments',data)
             .then((response) => {
-                this.props.history.replace('/all-access')
+                this.props.history.replace('/all-payments')
             })
             .catch((error) => {
                 this.setState({
@@ -80,7 +94,6 @@ class  UpdateAccess extends Component{
                 })
             })
     }
-
 
     inputHandler = (event, index) => {
         const stateCopy = [
@@ -91,24 +104,18 @@ class  UpdateAccess extends Component{
         this.setState({
             controls: stateCopy
         })
-    }
-
-    changeHandler = (event) => {
-        this.setState({
-            userId: event.target.value
-        })
-    }
-
+    }    
+    
     render(){
         return(
             <div>
-                 <Navbar auth={true}/>
-                 <div className="container">
+                <Navbar auth={true}/>
+                <div className="container">
                     <div class="row justify-content-center align-items-center">
                         <div class="col-sm-6">
                             <div className="card mt-15">
                                 <div className="card-header text-center">
-                                    Actualizar Chip Control de Acceso
+                                    Pagos
                                 </div>
                                 {   
                                     this.state.error
@@ -117,8 +124,9 @@ class  UpdateAccess extends Component{
                                         {this.state.error}
                                     </div>                                
                                     : null
-                                }
+                                }                                                                
                                 <form className="card-body" onSubmit={this.submitHandler}>
+                            
                                     {
                                         this.state.controls.map((control, index)=>(                            
                                             <Input 
@@ -129,18 +137,19 @@ class  UpdateAccess extends Component{
                                                 changed={(event) => this.inputHandler(event,index) }
                                             />
                                         ))
-                                    }                                                                 
+                                    }
                                     <button type="submit" className="btn btn-primary">
-                                        Guardar
+                                        Crear Pago
                                     </button>
-                                </form>    
+                                    
+                                </form>  
                                 </div>                
                         </div>
                     </div>                        
-                 </div>                             
+                 </div>             
             </div>
         )
     }
 }
 
-export default UpdateAccess
+export default Payments

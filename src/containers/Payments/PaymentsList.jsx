@@ -52,7 +52,12 @@ export default class PaymentsList extends Component {
 
     //folio
     updateHandler = (index) => {
-        console.log(this.state.data[index][1])
+        this.props.history.push({
+            pathname: '/update-payments',
+            state: {
+                folio: this.state.data[index][1]
+            }
+        })
     }
 
     render() {

@@ -15,6 +15,8 @@ import './App.css';
 import ReservationList from './containers/Reservation/ReservationList';
 import {authCheckState} from './store/actions/index'
 import UpdateAccess from './containers/Access/UpdateAccess'
+import UpdateMaintenance from './containers/Maintenance/MaintenanceUpdate'
+import UpdatePayments from './containers/Payments/UpdatePayment'
 class App extends Component {
 
   componentDidMount(){
@@ -44,7 +46,8 @@ class App extends Component {
           <Route path="/all-users" component={OwnerList}/>
           <Route path="/all-access" component={AccessList}/>
           <Route path="/update-access" component={UpdateAccess}/>
-          
+          <Route path="/update-maintenance" component={UpdateMaintenance}/>
+          <Route path="/update-payments" component={UpdatePayments}/>
           <Redirect to="/all-payments"/>
         </Switch>                
       )
