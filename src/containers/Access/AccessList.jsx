@@ -50,6 +50,12 @@ export default class MaintenanceList extends Component {
     //id
     updateHandler = (index) => {
         console.log(this.state.data[index][0])
+        this.props.history.push({
+            path: '/update-access',
+            state: {
+                id: this.state.data[index][0]
+            }
+        })
     }
 
 

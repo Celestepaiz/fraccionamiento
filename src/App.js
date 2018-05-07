@@ -14,7 +14,7 @@ import {connect} from 'react-redux'
 import './App.css';
 import ReservationList from './containers/Reservation/ReservationList';
 import {authCheckState} from './store/actions/index'
-
+import UpdateAccess from './containers/Access/UpdateAccess'
 class App extends Component {
 
   componentDidMount(){
@@ -43,6 +43,7 @@ class App extends Component {
           <Route path="/all-reservations"component={ReservationList}/>
           <Route path="/all-users" component={OwnerList}/>
           <Route path="/all-access" component={AccessList}/>
+          <Route path="/update-access" component={UpdateAccess}/>
           <Redirect to="/all-payments"/>
         </Switch>                
       )
