@@ -28,7 +28,7 @@ class  Access extends Component{
         ],
         error: null,
         usersData: [],
-        userId: null
+        userId: this.state.usersData[0]._id
         
     }
 
