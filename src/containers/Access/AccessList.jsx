@@ -37,7 +37,7 @@ export default class MaintenanceList extends Component {
                 const dataCopy = [
                     ...this.state.data
                 ]                 
-                dataCopy[index] = null
+                dataCopy.splice(index, 1)
                 this.setState({
                     data: dataCopy
                 })
