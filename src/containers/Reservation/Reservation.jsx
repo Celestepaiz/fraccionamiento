@@ -35,7 +35,30 @@ class  Reservation extends Component{
                 value:'',
                 label:'Hora fin'
             },        
-        ]                
+        ],
+        error: null               
+    }
+
+    submitHandler = (event) => {
+        event.preventDefault()
+        const data = {
+            titulo: this.state.controls[0].value,
+            descripcion: this.state.controls[1].value,
+            fecha_inicio: this.state.controls[2].value,
+            fecha_fin: this.state.controls[3].value,
+            hora_inicio: this.state.controls[4].value,
+            hora_fin: this.state.controls[5].value
+        }
+
+        axios.post('http://localhost:3000/api/reservation',data)
+            .then((response) => {
+                this.props.history.replace('/all-reservations')
+            })
+            .catch((error) => {
+                this.setState({
+                    error: "Ha ocurrido un error"
+                })
+            })
     }
 
     inputHandler = (event, index) => {
@@ -59,7 +82,15 @@ class  Reservation extends Component{
                                 <div className="card-header text-center">
                                     Reservaciones
                                 </div>
-                                <form className="card-body" action="">
+                                {   
+                                    this.state.error
+                                    ? 
+                                    <div class="alert alert-danger" role="alert">
+                                        {this.state.error}
+                                    </div>                                
+                                    : null
+                                }                                                                                                
+                                <form className="card-body" onSubmit={this.submitHandler}>
                             
                                     {
                                         this.state.controls.map((control, index)=>(                            

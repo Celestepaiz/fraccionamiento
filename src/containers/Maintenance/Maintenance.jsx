@@ -19,8 +19,29 @@ class  Maintenance extends Component{
                 value: '',
                 label: 'Fecha limite'                
             }
-        ]                
+        ],
+        error: null
     }
+
+    submitHandler = (event) => {
+        event.preventDefault()
+        const data = {
+            concepto: this.state.controls[0].value,
+            monto: this.state.controls[1].value,
+            fecha_limite: this.state.controls[2].value,
+        }
+
+        axios.post('http://localhost:3000/api/maintenance',data)
+            .then((response) => {
+                this.props.history.replace('/all-maintenance')
+            })
+            .catch((error) => {
+                this.setState({
+                    error: "Ha ocurrido un error"
+                })
+            })
+    }
+
 
     inputHandler = (event, index) => {
         const stateCopy = [
@@ -44,8 +65,15 @@ class  Maintenance extends Component{
                                 <div className="card-header text-center">
                                     Pago Mantenimiento
                                 </div>
-                 
-                                <form className="card-body" action="">
+                                {   
+                                    this.state.error
+                                    ? 
+                                    <div class="alert alert-danger" role="alert">
+                                        {this.state.error}
+                                    </div>                                
+                                    : null
+                                }
+                                <form className="card-body" onSubmit={this.submitHandler}>
                             
                                     {
                                         this.state.controls.map((control, index)=>(                            

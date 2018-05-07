@@ -28,11 +28,32 @@ class  Owner extends Component{
                 type:"text",
                 value:'',
                 label:'Numero'
-            }
-            
-        
-        ]                
+            }                    
+        ],
+        error: null            
     }
+
+    submitHandler = (event) => {
+        event.preventDefault()
+        const data = {
+            nombre: this.state.controls[0].value,
+            email: this.state.controls[1].value,
+            password: this.state.controls[2].value,
+            calle: this.state.controls[3].value,
+            numero: this.state.controls[4].value
+        }
+
+        axios.post('http://localhost:3000/api/register',data)
+            .then((response) => {
+                this.props.history.replace('/all-users')
+            })
+            .catch((error) => {
+                this.setState({
+                    error: "Ha ocurrido un error"
+                })
+            })
+    }
+
 
     inputHandler = (event, index) => {
         const stateCopy = [
@@ -56,8 +77,15 @@ class  Owner extends Component{
                                 <div className="card-header text-center">
                                     Registrar Nuevo Usuario
                                 </div>
-                 
-                                <form className="form-group card-body" action="">
+                                {   
+                                    this.state.error
+                                    ? 
+                                    <div class="alert alert-danger" role="alert">
+                                        {this.state.error}
+                                    </div>                                
+                                    : null
+                                }                                
+                                <form className="form-group card-body" onSubmit={this.submitHandler}>
                                     {
                                         this.state.controls.map((control, index)=>(                            
                                             <Input 

@@ -29,7 +29,29 @@ class  Payments extends Component{
                 value:'',
                 label:"Nombre de quien pago"
             }
-        ]                
+        ],
+        error: null
+    }
+
+    submitHandler = (event) => {
+        event.preventDefault()
+        const data = {
+            folio: this.state.controls[0].value,
+            fecha_mantenimiento: this.state.controls[1].value,
+            calle: this.state.controls[2].value,
+            numero: this.state.controls[3].value,
+            nombre: this.state.controls[4].value
+        }
+
+        axios.post('http://localhost:3000/api/payments',data)
+            .then((response) => {
+                this.props.history.replace('/all-payments')
+            })
+            .catch((error) => {
+                this.setState({
+                    error: "Ha ocurrido un error"
+                })
+            })
     }
 
     inputHandler = (event, index) => {
@@ -42,7 +64,7 @@ class  Payments extends Component{
             controls: stateCopy
         })
     }
-
+    
     render(){
         return(
             <div>
@@ -54,8 +76,15 @@ class  Payments extends Component{
                                 <div className="card-header text-center">
                                     Pagos
                                 </div>
-                 
-                                <form className="card-body" action="">
+                                {   
+                                    this.state.error
+                                    ? 
+                                    <div class="alert alert-danger" role="alert">
+                                        {this.state.error}
+                                    </div>                                
+                                    : null
+                                }                                                                
+                                <form className="card-body" onSubmit={this.submitHandler}>
                             
                                     {
                                         this.state.controls.map((control, index)=>(                            

@@ -40,7 +40,7 @@ class App extends Component {
           <Route path="/all-maintenance" component={MaintenanceList}/>
           <Route path="/all-reservations"component={ReservationList}/>
           <Route path="/all-users" component={OwnerList}/>
-          <Redirect to="all-payments"/>
+          <Redirect to="/all-payments"/>
         </Switch>                
       )
     }

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Input from '../../components/UI/Input'
 import Navbar from '../../components/Navbar/Navbar'
+import axios from 'axios'
 class  Access extends Component{
     state = {
         controls: [
@@ -25,8 +26,30 @@ class  Access extends Component{
                 label:'Codigo'
             }
         
-        ]                
+        ],
+        error: null
     }
+
+    submitHandler = (event) => {
+        event.preventDefault()
+        const data = {
+            modelo: this.state.controls[0].value,
+            marca: this.state.controls[1].value,
+            placas: this.state.controls[2].value,
+            codigo: this.state.controls[3].value
+        }
+
+        axios.post('http://localhost:3000/api/access',data)
+            .then((response) => {
+                this.props.history.replace('/access')
+            })
+            .catch((error) => {
+                this.setState({
+                    error: "Ha ocurrido un error"
+                })
+            })
+    }
+
 
     inputHandler = (event, index) => {
         const stateCopy = [
@@ -50,8 +73,15 @@ class  Access extends Component{
                                 <div className="card-header text-center">
                                     Chips control de acceso
                                 </div>
-                 
-                                <form className="card-body" action="">
+                                {   
+                                    this.state.error
+                                    ? 
+                                    <div class="alert alert-danger" role="alert">
+                                        {this.state.error}
+                                    </div>                                
+                                    : null
+                                }
+                                <form className="card-body" onSubmit={this.submitHandler}>
                                     {
                                         this.state.controls.map((control, index)=>(                            
                                             <Input 
