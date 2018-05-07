@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import Input from '../../components/UI/Input'
 import Navbar from '../../components/Navbar/Navbar'
+import axios from 'axios'
+
 class  Payments extends Component{
     state = {
         controls: [
