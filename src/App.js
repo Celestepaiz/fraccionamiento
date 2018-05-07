@@ -48,8 +48,7 @@ class App extends Component {
 
     return (
       <div>
-        {/* {routes} */}
-        <Maintenance />
+        {routes}
       </div>
     );
   }
