@@ -1,10 +1,9 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 import Edit from '../../img/pencil.svg'
 import Delete from '../../img/trashcan.svg'
 const Table = (props) => {
     return (
-        <table class="table table-hover">
+        <table className="table table-hover">
         <thead>
           <tr>
             {
@@ -24,12 +23,8 @@ const Table = (props) => {
                             ))
                         }
                         <td>
-                            <NavLink to="/"> 
-                                <img src={Edit} alt=""/>
-                            </NavLink>
-                            <NavLink to="/"> 
-                                <img src={Delete} alt=""/>
-                            </NavLink>
+                            <img src={Edit} alt="" className="ml-10" onClick={() => props.updateHandler(index)}/>
+                            <img src={Delete} alt="" className="ml-10"  onClick={() => props.deleteHandler(index)}/>
                         </td>
                     </tr>        
                 ))

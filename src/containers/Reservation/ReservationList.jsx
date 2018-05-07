@@ -13,10 +13,21 @@ export default class ReservationList extends Component {
         ]
     }
 
+    //
+
+    deleteHandler = (index) => {
+        console.log(this.state.data[index])
+    }
+
+
+    updateHandler = (index) => {
+        console.log(this.state.data[index])
+    }
+
     render() {
         return(
             <div>
-            <Navbar/>
+            <Navbar auth={true}/>
             <div className="container">
                <div className="row justify-content-center align-items-center">
                    <div className="col-sm-12">
@@ -25,7 +36,12 @@ export default class ReservationList extends Component {
                                Reservaciones
                                <NavLink to="/reservation" className="btn btn-success float-right"> Crear </NavLink>
                            </div>       
-                           <Table headers={this.state.headers} data={this.state.data}/>
+                           <Table 
+                                headers={this.state.headers} 
+                                data={this.state.data}
+                                deleteHandler={this.deleteHandler}
+                                updateHandler={this.updateHandler}
+                            />
                            </div>                
                         </div>
                     </div>                        

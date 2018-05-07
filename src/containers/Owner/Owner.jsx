@@ -48,7 +48,7 @@ class  Owner extends Component{
     render(){
         return(
             <div>
-                 <Navbar/>
+                 <Navbar auth={true}/>
                  <div className="container">
                     <div className="row justify-content-center align-items-center">
                         <div className="col-sm-6">

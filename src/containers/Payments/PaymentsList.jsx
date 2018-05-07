@@ -13,10 +13,20 @@ export default class PaymentsList extends Component {
         ]
     }
 
+    //folio
+    deleteHandler = (index) => {
+        console.log(this.state.data[index][1])
+    }
+
+    //folio
+    updateHandler = (index) => {
+        console.log(this.state.data[index][1])
+    }
+
     render() {
         return(
             <div>
-            <Navbar/>
+            <Navbar auth={true}/>
             <div className="container">
                <div className="row justify-content-center align-items-center">
                    <div className="col-sm-12">
@@ -25,7 +35,12 @@ export default class PaymentsList extends Component {
                                Lista de pagos 
                                <NavLink to="/payments" className="btn btn-success float-right"> Registrar pago </NavLink>
                            </div>       
-                           <Table headers={this.state.headers} data={this.state.data}/>
+                           <Table
+                                headers={this.state.headers} 
+                                data={this.state.data}
+                                deleteHandler={this.deleteHandler}
+                                updateHandler={this.updateHandler}
+                            />
                            </div>                
                         </div>
                     </div>                        

@@ -8,14 +8,28 @@ import Maintenance from './containers/Maintenance/Maintenance'
 import OwnerList from './containers/Owner/OwnerList'
 import MaintenanceList from './containers/Maintenance/MaintenanceList'
 import PaymentsList from './containers/Payments/PaymentsList'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect , withRouter} from 'react-router-dom'
+import {connect} from 'react-redux'
 import './App.css';
 import ReservationList from './containers/Reservation/ReservationList';
+import {authCheckState} from './store/actions/index'
 
 class App extends Component {
+
+  componentDidMount(){
+    this.props.onCheckAuth()
+  }
+
   render() {
-    return (
-      <div>
+    let routes = (
+      <Switch>
+        <Route path='/' exact component={Login}/>
+        <Redirect to='/'/>
+      </Switch>  
+    )
+
+    if(this.props.isAuth){
+      routes = (
         <Switch>
           <Route path="/reservation" component={Reservation}/>
           <Route path="/access" component={Access}/>
@@ -26,11 +40,33 @@ class App extends Component {
           <Route path="/all-maintenance" component={MaintenanceList}/>
           <Route path="/all-reservations"component={ReservationList}/>
           <Route path="/all-users" component={OwnerList}/>
-          <Route path="/" exact component={Login}/>
-        </Switch>        
+          <Redirect to="all-payments"/>
+        </Switch>                
+      )
+    }
+
+
+    return (
+      <div>
+        {routes}
       </div>
     );
   }
 }
 
-export default App;
+
+const mapStateToProps = (state) => {
+  return {
+    isAuth: state.token !== null
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onCheckAuth: () => dispatch(authCheckState())
+  }
+}
+
+
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(App))
+

@@ -36,7 +36,7 @@ class  Maintenance extends Component{
     render(){
         return(
             <div>
-                <Navbar/>
+                <Navbar auth={true}/>
                 <div className="container">
                     <div class="row justify-content-center align-items-center">
                         <div class="col-sm-6">

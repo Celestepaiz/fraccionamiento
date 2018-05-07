@@ -13,10 +13,20 @@ export default class OwnerList extends Component {
         ]
     }
 
+    //
+    deleteHandler = (index) => {
+        console.log(this.state.data[index])
+    }
+
+    updateHandler = (index) => {
+        console.log(this.state.data[index])
+    }
+
+
     render() {
         return(
             <div>
-            <Navbar/>
+            <Navbar auth={true}/>
             <div className="container">
                <div className="row justify-content-center align-items-center">
                    <div className="col-sm-12">
@@ -25,7 +35,12 @@ export default class OwnerList extends Component {
                                Lista Usuarios 
                                <NavLink to="/owner" className="btn btn-success float-right"> Crear usuario </NavLink>
                            </div>       
-                           <Table headers={this.state.headers} data={this.state.data}/>
+                           <Table 
+                                headers={this.state.headers} 
+                                data={this.state.data} 
+                                deleteHandler={this.deleteHandler}
+                                updateHandler={this.updateHandler}
+                            />
                            </div>                
                         </div>
                     </div>                        

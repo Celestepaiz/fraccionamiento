@@ -1,6 +1,11 @@
 import React, {Component} from 'react'
 import Input from '../../components/UI/Input'
 import Navbar from '../../components/Navbar/Navbar'
+import * as actions from '../../store/actions/index'
+import {connect} from 'react-redux'
+import { Redirect } from 'react-router-dom'
+
+
 class Login extends Component{
     state = {
         controls: [
@@ -17,6 +22,12 @@ class Login extends Component{
         ]                
     }
 
+    authHandler = (event) => {
+        event.preventDefault()
+        this.props.onAuth(this.state.email,this.state.password,this.state.isSignUp)
+    }
+
+
     inputHandler = (event, index) => {
         const stateCopy = [
             ...this.state.controls        
@@ -29,18 +40,24 @@ class Login extends Component{
     }
 
     render(){
+        let authRedirect = null 
+        if(this.props.isAuthenticated) {
+            authRedirect = ( <Redirect to='/profile'/>)
+        }
+        
         return(
             <div>
+                {authRedirect}                
                 <Navbar/>
                 <div className="container">
-                    <div class="row justify-content-center align-items-center">
-                        <div class="col-sm-6">
+                    <div className="row justify-content-center align-items-center">
+                        <div className="col-sm-6">
                             <div className="card mt-15">
                                 <div className="card-header text-center">
                                     Iniciar Sesion
                                 </div>
                  
-                                <form action="" className="card-body">
+                                <form onSubmit={this.authHandler} className="card-body">
                                     {
                                         this.state.controls.map((control, index)=>(                            
                                             <Input 
@@ -53,7 +70,7 @@ class Login extends Component{
                                         ))
                                     }
                                     <br/>
-                                    <button type="submit" className="btn btn-primary ">
+                                    <button type="submit" className="btn btn-primary " >
                                         Iniciar Sesion
                                     </button>
                                 </form>   
@@ -66,4 +83,20 @@ class Login extends Component{
     }
 }
 
-export default Login
+
+const mapStateToProps = (state) => {
+    return {
+        isAuthenticated: state.token !== null,
+        error: state.error    
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onAuth: (email,password,isSignUp) => dispatch(actions.auth(email,password,isSignUp)),
+        onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/'))
+    }
+}
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(Login)
