@@ -8,10 +8,28 @@ export default class MaintenanceList extends Component {
 
     state = {
         headers: ["Id", "Concepto", "Monto", "Fecha limite", "Acciones"],
-        data: [
-            ["1","Pago Mayo", "200", "2018-05-05"]
-        ]
+        data: []
     }
+
+    componentDidMount(){
+        axios.get('http://localhost:3000/api/all-maintenance')
+             .then((response) => {
+                const registros = this.ObjectToArray(response.data.registros)
+                this.setState({
+                    data: registros
+                })
+             })
+    }
+
+    ObjectToArray = (ObjectArray) => {
+        let aux = []    
+        ObjectArray.map((obj) => {
+            // console.log(Object.values(obj))
+            aux.push(Object.values(obj))
+        })
+        return aux    
+    }
+    
 
     //id
     deleteHandler = (index) => {

@@ -7,11 +7,29 @@ import { NavLink } from 'react-router-dom'
 export default class PaymentsList extends Component {
 
     state = {
-        headers: ["Id", "Folio", "Fecha de mantenimiento", "Calle", "Numero", "Nombre de quien pago", "Acciones"],
-        data: [
-            ["1","1234567", "2017-09-09", "Asturias", "22", "Vicentina"]
-        ]
+        headers: ["Id", "Folio", "Fecha de mantenimiento", "Calle", "Numero", "Nombre de quien pago", "Concepto", "Monto", "Acciones"],
+        data: []
     }
+
+    componentDidMount(){
+        axios.get('http://localhost:3000/api/all-payments')
+             .then((response) => {
+                const registros = this.ObjectToArray(response.data.registros)
+                this.setState({
+                    data: registros
+                })
+             })
+    }
+
+    ObjectToArray = (ObjectArray) => {
+        let aux = []    
+        ObjectArray.map((obj) => {
+            // console.log(Object.values(obj))
+            aux.push(Object.values(obj))
+        })
+        return aux    
+    }
+    
 
     //folio
     deleteHandler = (index) => {

@@ -8,10 +8,28 @@ export default class ReservationList extends Component {
 
     state = {
         headers: ["Id", "Titulo", "Descripcion", "Fecha inicio", "Fecha fin", "Hora inicio", "Hora fin", "Acciones"],
-        data: [
-            ["1","Cena", "COn mi amor", "2018-03-03", "2018-03-04", "12:00:00", "12:00:00"]
-        ]
+        data: []
     }
+
+    componentDidMount(){
+        axios.get('http://localhost:3000/api/all-reservations')
+             .then((response) => {
+                const registros = this.ObjectToArray(response.data.registros)
+                this.setState({
+                    data: registros
+                })
+             })
+    }
+
+    ObjectToArray = (ObjectArray) => {
+        let aux = []    
+        ObjectArray.map((obj) => {
+            // console.log(Object.values(obj))
+            aux.push(Object.values(obj))
+        })
+        return aux    
+    }
+    
 
     //
 
