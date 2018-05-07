@@ -44,6 +44,7 @@ class App extends Component {
           <Route path="/all-users" component={OwnerList}/>
           <Route path="/all-access" component={AccessList}/>
           <Route path="/update-access" component={UpdateAccess}/>
+          
           <Redirect to="/all-payments"/>
         </Switch>                
       )

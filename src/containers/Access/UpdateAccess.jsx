@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import Input from '../../components/UI/Input'
 import Navbar from '../../components/Navbar/Navbar'
 import axios from 'axios'
-class  Access extends Component{
+class  UpdateAccess extends Component{
     state = {
         controls: [
             {                
@@ -140,4 +140,4 @@ class  Access extends Component{
     }
 }
 
-export default Access
+export default UpdateAccess
