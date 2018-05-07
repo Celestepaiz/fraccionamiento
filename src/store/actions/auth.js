@@ -42,8 +42,7 @@ export const auth = (email, password, isSignedUp) => {
         dispatch(authStart())
         const authData = {
             email: email,
-            password: password,
-            returnSecureToken: true
+            password: password
         }
         let url = 'http://localhost:3000/login'
         if (!isSignedUp) {
