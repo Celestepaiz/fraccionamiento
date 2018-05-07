@@ -42,17 +42,7 @@ class  MaintenanceUpdate extends Component{
                controls: updatedControls               
            })
            
-        })
-   
-        axios.get('http://localhost:3000/api/users')
-             .then((response) => {
-                 this.setState({
-                     usersData: response.data.users,
-                     userId: response.data.users[0]._id                     
-                 })
-             }).catch((error) => {
-                console.log("error" + error)
-             })
+        })   
     }
 
 
@@ -65,7 +55,7 @@ class  MaintenanceUpdate extends Component{
             id_user: this.state.userId,
         }
 
-        axios.post('http://localhost:3000/api/maintenance',data)
+        axios.put('http://localhost:3000/api/maintenance',data)
             .then((response) => {
                 this.props.history.replace('/all-maintenance')
             })

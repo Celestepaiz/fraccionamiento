@@ -70,7 +70,7 @@ class  UpdateAccess extends Component{
             id_user: this.state.userId
         }
 
-        axios.post('http://localhost:3000/api/access',data)
+        axios.put('http://localhost:3000/api/access',data)
             .then((response) => {
                 this.props.history.replace('/all-access')
             })

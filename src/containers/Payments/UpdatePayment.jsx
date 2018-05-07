@@ -86,7 +86,7 @@ class  Payments extends Component{
             monto: parseFloat(this.state.controls[6].value),
             id_user: this.state.userId      
         }
-        axios.post('http://localhost:3000/api/payments',data)
+        axios.put('http://localhost:3000/api/payments',data)
             .then((response) => {
                 this.props.history.replace('/all-payments')
             })
