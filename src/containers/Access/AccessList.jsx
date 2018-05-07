@@ -1,18 +1,35 @@
 import React, { Component } from 'react'
 import Table from '../../components/UI/Table'
 import Navbar from '../../components/Navbar/Navbar'
-
+import axios from 'axios'
 import { NavLink } from 'react-router-dom'
 
 export default class MaintenanceList extends Component {
 
     state = {
-        headers: ["Id", "Modelo", "Marca", "Placas", "Codigo"],
-        data: [
-            ["1","2018", "Seat", "asdf123", "asdf3221"]
-        ]
+        headers: ["Id", "Modelo", "Marca", "Placas", "Codigo", "User"],
+        data: []
     }
 
+    componentDidMount(){
+        axios.get('http://localhost:3000/api/all-access')
+             .then((response) => {
+                const registros = this.ObjectToArray(response.data.registros)
+                this.setState({
+                    data: registros
+                })
+             })
+    }
+
+    ObjectToArray = (ObjectArray) => {
+        let aux = []    
+        ObjectArray.map((obj) => {
+            // console.log(Object.values(obj))
+            aux.push(Object.values(obj))
+        })
+        return aux    
+    }
+    
     //id
     deleteHandler = (index) => {
         console.log(this.state.data[index][0])
