@@ -32,7 +32,13 @@ export default class MaintenanceList extends Component {
     
     //id
     deleteHandler = (index) => {
-        console.log(this.state.data[index][0])
+        axios.delete(`http://localhost:3000/api/access/${this.state.data[index][4]}`)
+             .then(() => {
+                 props.history.history.replace('/all-access')
+             })
+             .catch(() => {
+                 console.log("error")
+             })
     }
 
     //id
