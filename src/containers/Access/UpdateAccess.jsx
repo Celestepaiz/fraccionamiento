@@ -34,8 +34,8 @@ class  UpdateAccess extends Component{
 
     componentDidMount(){
         axios.get(`http://localhost:3000/api/access/${this.props.location.state.codigo}`)
-             .then((algo) => {
-                console.log(algo)
+             .then((response) => {
+                console.log(response.data.registro[0])
              })
         axios.get('http://localhost:3000/api/users')
              .then((response) => {
