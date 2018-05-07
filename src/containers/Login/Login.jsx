@@ -24,7 +24,7 @@ class Login extends Component{
 
     authHandler = (event) => {
         event.preventDefault()
-        this.props.onAuth(this.state.email,this.state.password,this.state.isSignUp)
+        this.props.onAuth(this.state.controls[0].value,this.state.controls[1].value,this.state.isSignUp)
     }
 
 
