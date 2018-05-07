@@ -26,9 +26,10 @@ class  Access extends Component{
                 label:'Codigo'
             }        
         ],
-        usersData: null,
-        userId: null,
-        error: null
+        error: null,
+        usersData: [],
+        userId: null
+        
     }
 
     componentDidMount(){
@@ -38,7 +39,7 @@ class  Access extends Component{
                      usersData: response.data.users
                  })
              }).catch((error) => {
-                console.log(error)
+                console.log("error" + error)
              })
     }
 
@@ -75,6 +76,12 @@ class  Access extends Component{
         })
     }
 
+    changeHandler = (event) => {
+        this.setState({
+            userId: event.target.value
+        })
+    }
+
     render(){
         return(
             <div>
@@ -106,17 +113,17 @@ class  Access extends Component{
                                             />
                                         ))
                                     }
-                                    <div class="form-group">
-                                        <label for="exampleFormControlSelect1">Nombre Usuario</label>
-                                        <select class="form-control" id="exampleFormControlSelect1">
+                                    <div className="form-group">
+                                        <label >Nombre Usuario</label>
+                                        <select className="form-control" onChange={(event) => this.changeHandler(event)}>
                                             {
                                                 this.state.usersData.map((user,index) => (
-                                                    <option key={index} _id={user._id} >{user.name}</option>
+                                                    <option key={index} value={user._id}>{user.nombre}</option>
                                                 ))
                                             }
                                             
                                         </select>
-                                    </div>
+                                    </div>                                    
                                     <button type="submit" className="btn btn-primary">
                                         Crear Control de Acceso
                                     </button>

@@ -24,12 +24,11 @@ class  Maintenance extends Component{
         ],
         error: null,
         usersData: [],
-        userId: null,
+        userId: null
         
     }
 
     componentDidMount(){
-        console.log("hola")
         axios.get('http://localhost:3000/api/users')
              .then((response) => {
                  this.setState({
@@ -47,7 +46,7 @@ class  Maintenance extends Component{
             concepto: this.state.controls[0].value,
             monto: this.state.controls[1].value,
             fecha_limite: this.state.controls[2].value,
-            id_user: this.state.userId
+            id_user: this.state.userId,
         }
 
         axios.post('http://localhost:3000/api/maintenance',data)
@@ -74,7 +73,6 @@ class  Maintenance extends Component{
     }
 
     changeHandler = (event) => {
-        console.log(event.target.value)
         this.setState({
             userId: event.target.value
         })

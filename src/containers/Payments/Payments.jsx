@@ -43,7 +43,21 @@ class  Payments extends Component{
             }
 
         ],
-        error: null
+        error: null,
+        usersData: [],
+        userId: null
+        
+    }
+
+    componentDidMount(){
+        axios.get('http://localhost:3000/api/users')
+             .then((response) => {
+                 this.setState({
+                     usersData: response.data.users
+                 })
+             }).catch((error) => {
+                console.log("error" + error)
+             })
     }
 
     submitHandler = (event) => {
@@ -55,7 +69,8 @@ class  Payments extends Component{
             numero: this.state.controls[3].value,
             nombre: this.state.controls[4].value,
             concepto: this.state.controls[5].value,
-            monto: parseFloat(this.state.controls[6].value)        
+            monto: parseFloat(this.state.controls[6].value),
+            id_user: this.state.userId      
         }
         axios.post('http://localhost:3000/api/payments',data)
             .then((response) => {
@@ -78,6 +93,13 @@ class  Payments extends Component{
             controls: stateCopy
         })
     }
+
+    changeHandler = (event) => {
+        this.setState({
+            userId: event.target.value
+        })
+    }
+
     
     render(){
         return(
@@ -111,6 +133,17 @@ class  Payments extends Component{
                                             />
                                         ))
                                     }
+                                    <div className="form-group">
+                                        <label >Nombre Usuario</label>
+                                        <select className="form-control" onChange={(event) => this.changeHandler(event)}>
+                                            {
+                                                this.state.usersData.map((user,index) => (
+                                                    <option key={index} value={user._id}>{user.nombre}</option>
+                                                ))
+                                            }
+                                            
+                                        </select>
+                                    </div>                                    
                                     <button type="submit" className="btn btn-primary">
                                         Crear Pago
                                     </button>

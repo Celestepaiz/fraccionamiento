@@ -38,8 +38,23 @@ class  Reservation extends Component{
                 label:'Hora fin'
             },        
         ],
-        error: null               
+        error: null ,
+        usersData: [],
+        userId: null
+                      
     }
+
+    componentDidMount(){
+        axios.get('http://localhost:3000/api/users')
+             .then((response) => {
+                 this.setState({
+                     usersData: response.data.users
+                 })
+             }).catch((error) => {
+                console.log("error" + error)
+             })
+    }
+
 
     submitHandler = (event) => {
         event.preventDefault()
@@ -49,7 +64,8 @@ class  Reservation extends Component{
             fecha_inicio: this.state.controls[2].value,
             fecha_fin: this.state.controls[3].value,
             hora_inicio: this.state.controls[4].value,
-            hora_fin: this.state.controls[5].value
+            hora_fin: this.state.controls[5].value,
+            id_user: this.state.userId
         }
 
         axios.post('http://localhost:3000/api/reservation',data)
@@ -72,6 +88,13 @@ class  Reservation extends Component{
             controls: stateCopy
         })
     }
+
+    changeHandler = (event) => {
+        this.setState({
+            userId: event.target.value
+        })
+    }
+
 
     render(){
         return(
@@ -105,6 +128,18 @@ class  Reservation extends Component{
                                             />
                                         ))
                                     }
+                                    <div className="form-group">
+                                        <label >Nombre Usuario</label>
+                                        <select className="form-control" onChange={(event) => this.changeHandler(event)}>
+                                            {
+                                                this.state.usersData.map((user,index) => (
+                                                    <option key={index} value={user._id}>{user.nombre}</option>
+                                                ))
+                                            }
+                                            
+                                        </select>
+                                    </div>
+                                    
                                     <button type="submit" className="btn btn-primary">
                                         Crear Reservacion
                                     </button>
