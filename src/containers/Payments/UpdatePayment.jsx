@@ -49,8 +49,10 @@ class  Payments extends Component{
     }
 
     componentDidMount(){
-        axios.get(`http://localhost:3000/api/maintenance/${this.props.location.state.folio}`)
+        console.log("holi")
+        axios.get(`http://localhost:3000/api/payments/${this.props.location.state.folio}`)
         .then((response) => {
+            console.log(response)
            const data = response.data.registro[0]
            const updatedControls = [
                ...this.state.controls,                                    
