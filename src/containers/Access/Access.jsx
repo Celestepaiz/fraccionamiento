@@ -33,7 +33,7 @@ class  Access extends Component{
     }
 
     componentDidMount(){
-        axios.get('http://localhost:3000/api/users')
+        axios.get('http://localhost:5000/api/users')
              .then((response) => {
                  this.setState({
                      usersData: response.data.users,
@@ -54,7 +54,7 @@ class  Access extends Component{
             id_user: this.state.userId
         }
 
-        axios.post('http://localhost:3000/api/access',data)
+        axios.post('http://localhost:5000/api/access',data)
             .then((response) => {
                 this.props.history.replace('/all-access')
             })

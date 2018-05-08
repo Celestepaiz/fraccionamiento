@@ -34,8 +34,7 @@ class App extends Component {
 
     if(this.props.isAuth){
       routes = (
-        <Switch>
-          
+        <Switch>          
           <Route path="/reservation" component={Reservation}/>
           <Route path="/access" component={Access}/>
           <Route path="/maintenance" component={Maintenance}/>

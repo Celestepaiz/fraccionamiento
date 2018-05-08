@@ -13,7 +13,7 @@ export default class PaymentsList extends Component {
     }
 
     componentDidMount(){
-        axios.get('http://localhost:3000/api/all-payments')
+        axios.get('http://localhost:5000/api/all-payments')
              .then((response) => {
                 const registros = this.ObjectToArray(response.data.registros)
                 this.setState({
@@ -34,8 +34,7 @@ export default class PaymentsList extends Component {
 
     //folio
     deleteHandler = (index) => {
-        // console.log(this.state.data[index][1])
-        axios.delete(`http://localhost:3000/api/payments/${this.state.data[index][1]}`)
+        axios.delete(`http://localhost:5000/api/payments/${this.state.data[index][1]}`)
         .then(() => {
            const dataCopy = [
                ...this.state.data

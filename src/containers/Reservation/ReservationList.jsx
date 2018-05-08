@@ -13,7 +13,7 @@ export default class ReservationList extends Component {
     }
 
     componentDidMount(){
-        axios.get('http://localhost:3000/api/all-reservations')
+        axios.get('http://10.50.67.83:4203/api/all-reservations')
              .then((response) => {
                 const registros = this.ObjectToArray(response.data.registros)
                 this.setState({

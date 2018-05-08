@@ -45,7 +45,7 @@ class  Reservation extends Component{
     }
 
     componentDidMount(){
-        axios.get('http://localhost:3000/api/users')
+        axios.get('http://localhost:5000/api/users')
              .then((response) => {
                  this.setState({
                      usersData: response.data.users,
@@ -70,7 +70,7 @@ class  Reservation extends Component{
             id_user: this.state.userId
         }
 
-        axios.post('http://localhost:3000/api/reservation',data)
+        axios.post('http://10.50.67.83:4203/api/reservation',data)
             .then((response) => {
                 this.props.history.replace('/all-reservations')
             })
