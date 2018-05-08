@@ -33,7 +33,7 @@ class  Access extends Component{
     }
 
     componentDidMount(){
-        axios.get('http://localhost:3000/api/users')
+        axios.get('http://10.50.65.22:3000/api/users')
              .then((response) => {
                  this.setState({
                      usersData: response.data.users,

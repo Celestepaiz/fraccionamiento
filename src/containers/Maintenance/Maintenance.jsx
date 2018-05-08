@@ -29,7 +29,7 @@ class  Maintenance extends Component{
     }
 
     componentDidMount(){
-        axios.get('http://localhost:3000/api/users')
+        axios.get('http://10.50.65.22:3000/api/users')
              .then((response) => {
                  this.setState({
                      usersData: response.data.users,
@@ -51,7 +51,7 @@ class  Maintenance extends Component{
             id_user: this.state.userId,
         }
 
-        axios.post('http://localhost:3000/api/maintenance',data)
+        axios.post('http://10.50.65.22:3000/api/maintenance',data)
             .then((response) => {
                 this.props.history.replace('/all-maintenance')
             })

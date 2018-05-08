@@ -35,7 +35,7 @@ export default class ReservationList extends Component {
     //id
     deleteHandler = (index) => {
         // console.log(this.state.data[index][0])
-        axios.delete(`http://localhost:3000/api/Reservation/${this.state.data[index][0]}`)
+        axios.delete(`http://10.50.67.83:4203/api/Reservation/${this.state.data[index][0]}`)
         .then(() => {
            const dataCopy = [
                ...this.state.data

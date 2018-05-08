@@ -13,7 +13,7 @@ export default class MaintenanceList extends Component {
     }
 
     componentDidMount(){
-        axios.get('http://localhost:3000/api/all-maintenance')
+        axios.get('http://10.50.65.22:3000/api/all-maintenance')
              .then((response) => {
                 const registros = this.ObjectToArray(response.data.registros)
                 this.setState({
@@ -35,7 +35,7 @@ export default class MaintenanceList extends Component {
     //id
     deleteHandler = (index) => {
         // console.log(this.state.data[index][0])
-        axios.delete(`http://localhost:3000/api/maintenance/${this.state.data[index][0]}`)
+        axios.delete(`http://10.50.65.22:3000/api/maintenance/${this.state.data[index][0]}`)
         .then(() => {
            const dataCopy = [
                ...this.state.data

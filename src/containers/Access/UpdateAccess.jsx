@@ -33,7 +33,7 @@ class  UpdateAccess extends Component{
     }
 
     componentDidMount(){
-        axios.get(`http://localhost:3000/api/access/${this.props.location.state.codigo}`)
+        axios.get(`http://10.50.65.22:3000/api/access/${this.props.location.state.codigo}`)
              .then((response) => {
                 const data = response.data.registro[0]
                 const updatedControls = [
@@ -62,7 +62,7 @@ class  UpdateAccess extends Component{
             id_user: this.state.userId
         }
 
-        axios.put('http://localhost:3000/api/access',data)
+        axios.put('http://10.50.65.22:3000/api/access',data)
             .then((response) => {
                 this.props.history.replace('/all-access')
             })
