@@ -54,7 +54,7 @@ class  Access extends Component{
             id_user: this.state.userId
         }
 
-        axios.post('http://localhost:3000/api/access',data)
+        axios.post('http://10.50.65.22:3000/api/access',data)
             .then((response) => {
                 this.props.history.replace('/all-access')
             })
