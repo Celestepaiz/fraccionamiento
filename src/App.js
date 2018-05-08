@@ -17,6 +17,7 @@ import {authCheckState} from './store/actions/index'
 import UpdateAccess from './containers/Access/UpdateAccess'
 import UpdateMaintenance from './containers/Maintenance/MaintenanceUpdate'
 import UpdatePayment from './containers/Payments/UpdatePayment'
+import UpdateOwner from './containers/Owner/UpdateOwner'
 import Logout from './containers/Login/Logout/Logout'
 class App extends Component {
 
@@ -48,6 +49,7 @@ class App extends Component {
           <Route path="/update-access" component={UpdateAccess}/>
           <Route path="/update-maintenance" component={UpdateMaintenance}/>
           <Route path="/update-payments" component={UpdatePayment}/>
+          <Route path="/update-user" component={UpdateOwner}/>
           <Route path="/logout" component={Logout}/>
           <Redirect to="/all-payments"/>
         </Switch>                
