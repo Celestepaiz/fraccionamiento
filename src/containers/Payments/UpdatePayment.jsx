@@ -49,7 +49,7 @@ class  Payments extends Component{
     }
 
     componentDidMount(){
-        axios.get(`http://localhost:5000/api/payments/${this.props.location.state.folio}`)
+        axios.get(`http://localhost:3000/api/payments/${this.props.location.state.folio}`)
         .then((response) => {
             console.log(response)
            const data = response.data.registro[0]
@@ -85,7 +85,7 @@ class  Payments extends Component{
             monto: parseFloat(this.state.controls[6].value),
             id_user: this.state.userId      
         }
-        axios.put('http://localhost:5000/api/payments',data)
+        axios.put('http://localhost:3000/api/payments',data)
             .then((response) => {
                 this.props.history.replace('/all-payments')
             })

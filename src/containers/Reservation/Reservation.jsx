@@ -45,7 +45,7 @@ class  Reservation extends Component{
     }
 
     componentDidMount(){
-        axios.get('http://localhost:5000/api/users')
+        axios.get('http://localhost:3000/api/users')
              .then((response) => {
                  this.setState({
                      usersData: response.data.users,

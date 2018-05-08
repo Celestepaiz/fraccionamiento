@@ -46,7 +46,7 @@ class  Owner extends Component{
             rol: "propietario"
         }
 
-        axios.post('http://localhost:5000/api/register',data)
+        axios.post('http://localhost:3000/api/register',data)
             .then((response) => {
                 this.props.history.replace('/all-users')
             })

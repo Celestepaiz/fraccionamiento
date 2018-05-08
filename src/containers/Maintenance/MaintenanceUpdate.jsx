@@ -28,7 +28,7 @@ class  MaintenanceUpdate extends Component{
     }
 
     componentDidMount(){
-        axios.get(`http://localhost:5000/api/maintenance/${this.props.location.state.id}`)
+        axios.get(`http://localhost:3000/api/maintenance/${this.props.location.state.id}`)
         .then((response) => {
            const data = response.data.registro[0]
            const updatedControls = [
@@ -54,7 +54,7 @@ class  MaintenanceUpdate extends Component{
             id_user: this.state.userId,
         }
 
-        axios.put('http://localhost:5000/api/maintenance',data)
+        axios.put('http://localhost:3000/api/maintenance',data)
             .then((response) => {
                 this.props.history.replace('/all-maintenance')
             })
