@@ -14,7 +14,7 @@ export default class OwnerList extends Component {
     componentDidMount(){
         axios.get('http://10.50.65.22:3000/api/all-users')
              .then((response) => {
-                const registros = this.ObjectToArray(response.data.registros)
+                const registros = this.ObjectToArray(response.data.users)
                 this.setState({
                     data: registros
                 })
